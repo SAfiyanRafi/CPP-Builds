@@ -68,7 +68,7 @@ int main() {
     store.addToCart("Mango");
     cout<<endl;
 
-    // Display the total cost of items in the cart
+    // Display the total cost of items in the cart.
     store.displayCartTotal();
 
     return 0;
