@@ -89,7 +89,7 @@ string winner=Winner(User,Computer);
 		cout << "\t\tScore : "<<endl ;
 		cout<<"\t\tUser's Score : "<< Score1 <<endl; 
 		cout<<"\t\tComputer's Score : " <<Score2 << endl;
-	}
+	
 	getch();
 	return 0;
 }
