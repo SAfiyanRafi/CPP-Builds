@@ -29,13 +29,13 @@ void stockEntry()
     {
         string name;
         double quan,pric;
-        cout<<"Enter Product Name: ";
+        cout<<"Enter Product "<<i+1<<" Name: ";
         cin>>name;
         stock[i] = name;
-        cout<<"Enter Product"<<i+1<< "quantity: ";
+        cout<<"Quantity: ";
         cin>>quan;
         product_quantity[i] = quan;
-        cout<<"Enter Product Price: $";
+        cout<<"Price: $";
         cin>>pric;
         product_price[i] = pric;
         cout<<endl;
