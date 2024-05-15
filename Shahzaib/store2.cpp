@@ -119,7 +119,7 @@ void customerAuth()
     start();
 }
 
-void auth(string authUser, string authPwd)
+void auth(string &authUser, string &authPwd)
 {
     if (authUser==mainUserName && authPwd==mainUserPass)
     {
