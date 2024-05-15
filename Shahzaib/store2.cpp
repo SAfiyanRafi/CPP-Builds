@@ -1,5 +1,6 @@
 #include <iostream>
 #include <conio.h>
+#include <iomanip>
 using namespace std;;
 class sys
 {
@@ -28,7 +29,8 @@ void stockEntry()
     for (int i = 0; i < 2; i++)
     {
         string name;
-        double quan,pric;
+        int quan;
+        double pric;
         cout<<"Enter Product "<<i+1<<" Name: ";
         cin>>name;
         stock[i] = name;
@@ -42,13 +44,19 @@ void stockEntry()
     }
     adminMenu();
 }
+
 void displayStock()
 {
     system("cls");
+    cout << setw(15) << left << "Item"
+         << setw(15) << left << "Quantity"
+         << setw(10) << left << "Price" << endl;
     for (int i = 0; i < 2; i++)
     {
-        cout<<"Item        "<<"Quantity        "<<"Price"<<endl;
-        cout<<stock[i]<<"        "<<product_quantity[i]<<"        "<<"$"<<product_price[i]<<endl;
+        cout << setw(15) << left << stock[i]
+             << setw(15) << left << product_quantity[i]
+             << fixed << setprecision(2) // Set precision for price
+             << "$" << product_price[i] << endl;
     }
 }
 
