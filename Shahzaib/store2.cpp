@@ -1,7 +1,7 @@
 #include <iostream>
 #include <conio.h>
 #include <iomanip>
-using namespace std;;
+using namespace std;
 class sys
 {
 private:
