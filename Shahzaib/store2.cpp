@@ -129,6 +129,7 @@ void userMenu()
     
     default:
     cout<<"Invalid case!!!";
+    getch();
     userMenu();
     break;
     }
@@ -147,17 +148,35 @@ void cartManipulation()
     switch (choice)
     {
     case '1':
-    product_quantity[0] -= 1;
-    user_item_quantity[0] += 1;
-    user_cart_items[0] = stock_item[0];
-    user_item_price[0] += product_price[0];
+    if (product_quantity[0] > 0)
+    {
+        user_cart_items[0] = stock_item[0];
+        product_quantity[0] -= 1;
+        user_item_quantity[0] += 1;
+        user_item_price[0] += product_price[0];
+    }
+    else
+    {
+        cout<<"No More Left"<<endl;
+        getch();
+        cartManipulation();
+    }
     break;
 
     case '2':
-    product_quantity[1] -= 1;
-    user_item_quantity[1] += 1;
-    user_cart_items[1] = stock_item[1];
-    user_item_price[1] += product_price[1];
+    if (product_quantity[1] > 0)
+    {
+        user_cart_items[1] = stock_item[1];
+        product_quantity[1] -= 1;
+        user_item_quantity[1] += 1;
+        user_item_price[1] += product_price[1];
+    }
+    else
+    {
+        cout<<"No More Left"<<endl;
+        getch();
+        cartManipulation();
+    }
     break;
 
     case 'e':
@@ -175,7 +194,7 @@ void viewCart()
     cout<<endl;
     cout <<setw(5) << left << "No"<< setw(15) << left << "Item"
     << setw(15) << left << "Quantity"
-    << setw(10) << left << "Price" << endl;
+    << setw(10) << left << "Cost" << endl;
 
     for (int i = 0; i < total_cart_items; i++)
     {
@@ -196,7 +215,7 @@ void viewCart()
     cout<<endl;
     cout<<"---------------------------"<<endl;
     cout<<"Total items: "<<total_cart_items<<endl;
-    cout<<"Total price: "<<cart_item_total_price<<endl;
+    cout<<"Total Checkout price: "<<cart_item_total_price<<endl;
     cout<<"---------------------------"<<endl;
     cout<<endl;
     cout<<endl;
