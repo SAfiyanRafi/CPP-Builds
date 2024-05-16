@@ -14,9 +14,16 @@ string adminPass = "l";
 //---------------------------------------
 //       Store Data
 //---------------------------------------
-string stock[2] = {"Milk","Apples"};
-double product_quantity[2] = {3,20};
+string stock_item[2] = {"Milk","Apples"};
+int product_quantity[2] = {3,20};
 double product_price[2] = {32,21};
+//---------------------------------------
+//       User Cart
+//---------------------------------------
+string user_cart_items[2];
+int user_item_quantity[2] = {0,0};
+double user_item_price[2] = {0,0};
+int total_cart_items = sizeof(user_cart_items) / sizeof(user_cart_items[0]);
 //---------------------------------------
 //       Admin Controls
 //---------------------------------------
@@ -31,7 +38,7 @@ void stockEntry()
         double pric;
         cout<<"Enter Product "<<i+1<<" Name: ";
         cin>>name;
-        stock[i] = name;
+        stock_item[i] = name;
         cout<<"Quantity: ";
         cin>>quan;
         product_quantity[i] = quan; 
@@ -46,12 +53,14 @@ void stockEntry()
 void displayStock()
 {
     system("cls");
+    cout<<"STOCK ITEMS"<<endl;
+    cout<<endl;
     cout <<setw(5) << left << "No"<< setw(15) << left << "Item"
          << setw(15) << left << "Quantity"
          << setw(10) << left << "Price" << endl;
     for (int i = 0; i < 2; i++)
     {
-        cout << setw(5) << left <<i+1<< setw(15) << left << stock[i] 
+        cout << setw(5) << left <<i+1<< setw(15) << left << stock_item[i] 
              << setw(15) << left << product_quantity[i]
              << fixed << setprecision(2) // Set precision for price
              << "$" << product_price[i] << endl;
@@ -94,6 +103,8 @@ void adminMenu()
 //---------------------------------------
 void userMenu()
 {
+    char choice;
+
     system("cls");
     displayStock();
     cout<<endl;
@@ -102,33 +113,95 @@ void userMenu()
     cout<<"2) View Cart"<<endl;
     cout<<"3) Exit"<<endl;
     cout<<"Choose: ";
-
-    int choice;
     cin>>choice;
+    
     switch (choice)
     {
-    case 1:
-    
+    case '1':
+    cartManipulation();
     break;
 
-    case 2:
+    case '2':
     viewCart();
     break;
 
-    case 3:
+    case '3':
     exit(0);
     break;
     
     default:
     cout<<"Invalid case!!!";
-    getch();
     userMenu();
     break;
     }
+
+}
+void cartManipulation()
+{
+    char choice;
+    displayStock();
+    cout<<endl;
+    
+    do{
+    cout<<"Press E/e to Exit: \n";
+    cout<<"Choose No: ";
+    cin>>choice;
+    switch (choice)
+    {
+    case '1':
+    product_quantity[0] -= 1;
+    user_item_quantity[0] += 1;
+    user_cart_items[0] = stock_item[0];
+    user_item_price[0] += product_price[0];
+    break;
+
+    case '2':
+    product_quantity[1] -= 1;
+    user_item_quantity[1] += 1;
+    user_cart_items[1] = stock_item[1];
+    user_item_price[1] += product_price[1];
+    break;
+
+    case 'e':
+    userMenu();
+    break;
+    }
+    }while(true);
+
 }
 void viewCart()
 {
+    system("cls");
+    cout<<"CART"<<endl;
+    cout<<endl;
+    cout<<endl;
+    cout <<setw(5) << left << "No"<< setw(15) << left << "Item"
+    << setw(15) << left << "Quantity"
+    << setw(10) << left << "Price" << endl;
 
+    for (int i = 0; i < total_cart_items; i++)
+    {
+        cout << setw(5) << left <<i+1<< setw(15) << left << user_cart_items[i] 
+             << setw(15) << left << user_item_quantity[i]
+             << fixed << setprecision(2) // Set precision for price
+             << "$" << user_item_price[i] << endl;
+    }
+
+
+    double cart_item_total_price;
+    for (int i = 0; i < total_cart_items; i++)
+    {
+        cart_item_total_price += user_item_price[i];
+    }
+    
+    cout<<endl;
+    cout<<endl;
+    cout<<"---------------------------"<<endl;
+    cout<<"Total items: "<<total_cart_items<<endl;
+    cout<<"Total price: "<<cart_item_total_price<<endl;
+    cout<<"---------------------------"<<endl;
+    cout<<endl;
+    cout<<endl;
 }
 
 
