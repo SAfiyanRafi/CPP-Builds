@@ -49,7 +49,6 @@ void stockEntry()
     }
     adminMenu();
 }
-
 void displayStock()
 {
     system("cls");
@@ -66,7 +65,6 @@ void displayStock()
              << "$" << product_price[i] << endl;
     }
 }
-
 void adminMenu()
 {
     system("cls");
@@ -203,11 +201,7 @@ void viewCart()
     cout<<endl;
     cout<<endl;
 }
-
-
 //---------------------------------------
-
-
 public:
 void adminAuth()
 {
