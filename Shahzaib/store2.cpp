@@ -36,7 +36,7 @@ void stockEntry()
         stock[i] = name;
         cout<<"Quantity: ";
         cin>>quan;
-        product_quantity[i] = quan;
+        product_quantity[i] = quan; 
         cout<<"Price: $";
         cin>>pric;
         product_price[i] = pric;
