@@ -9,16 +9,14 @@ private:
 //       Login Data
 //---------------------------------------
 string mainUserName,mainUserPass;
-string adminName = "asdf";
-string adminPass = "asdf";
+string adminName = "l";
+string adminPass = "l";
 //---------------------------------------
 //       Store Data
 //---------------------------------------
-string stock[2];
-
-double product_quantity[2];
-
-double product_price[2];
+string stock[2] = {"Milk","Apples"};
+double product_quantity[2] = {3,20};
+double product_price[2] = {32,21};
 //---------------------------------------
 //       Admin Controls
 //---------------------------------------
@@ -48,12 +46,12 @@ void stockEntry()
 void displayStock()
 {
     system("cls");
-    cout << setw(15) << left << "Item"
+    cout <<setw(5) << left << "No"<< setw(15) << left << "Item"
          << setw(15) << left << "Quantity"
          << setw(10) << left << "Price" << endl;
     for (int i = 0; i < 2; i++)
     {
-        cout << setw(15) << left << stock[i]
+        cout << setw(5) << left <<i+1<< setw(15) << left << stock[i] 
              << setw(15) << left << product_quantity[i]
              << fixed << setprecision(2) // Set precision for price
              << "$" << product_price[i] << endl;
@@ -65,7 +63,7 @@ void adminMenu()
     system("cls");
     cout<<"1) Data Entry"<<endl;
     cout<<"2) Display Stock"<<endl;
-    cout<<"3) Admin Menu"<<endl;
+    cout<<"3) Exit"<<endl;
 
     int choice;
     cin>>choice;
@@ -80,7 +78,7 @@ void adminMenu()
     break;
 
     case 3:
-    adminMenu();
+    run();
     break;
     
     default:
@@ -91,6 +89,48 @@ void adminMenu()
     }
 
 }
+//---------------------------------------
+//       User Controls
+//---------------------------------------
+void userMenu()
+{
+    system("cls");
+    displayStock();
+    cout<<endl;
+    cout<<endl;
+    cout<<"1) Add to cart"<<endl;
+    cout<<"2) View Cart"<<endl;
+    cout<<"3) Exit"<<endl;
+    cout<<"Choose: ";
+
+    int choice;
+    cin>>choice;
+    switch (choice)
+    {
+    case 1:
+    
+    break;
+
+    case 2:
+    viewCart();
+    break;
+
+    case 3:
+    exit(0);
+    break;
+    
+    default:
+    cout<<"Invalid case!!!";
+    getch();
+    userMenu();
+    break;
+    }
+}
+void viewCart()
+{
+
+}
+
 
 //---------------------------------------
 
@@ -122,17 +162,15 @@ void adminAuth()
     }
 }
 
-void customerAuth()
-{
-    start();
-}
-
 void auth(string &authUser, string &authPwd)
 {
     if (authUser==mainUserName && authPwd==mainUserPass)
     {
         system("cls");
         cout<<"Login Done"<<endl;
+        cout<<"Press any key to view Items"<<endl;
+        getch();
+        userMenu();
     }
     else
     {
@@ -140,7 +178,7 @@ void auth(string &authUser, string &authPwd)
         cout<<"Username or Password Incorrect"<<endl;
         cout<<"Enter any key to exit: ";
         getch();
-        start();
+        user_Registration_Login();
     }
 
 }
@@ -152,10 +190,10 @@ void setID()
     cin>>mainUserName;
     cout<<"Enter Password: ";
     cin>>mainUserPass;
-    start();
+    user_Registration_Login();
 }
 
-void start()
+void user_Registration_Login()
 {
     system("cls");
     cout<<"--------------------------------"<<endl;
@@ -212,7 +250,7 @@ void run()
     break;
 
     case 2:
-    customerAuth();
+    user_Registration_Login();
     break;
     
     default:
