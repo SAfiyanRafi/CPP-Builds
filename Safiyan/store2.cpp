@@ -69,13 +69,25 @@ void stockManipulation()
 {
     system("cls");
     displayStock();
+    string newitem;
+    size_t pos;
     int choice;
+   
     cout<<"Enter Stock Number to change or replace it "<<endl;
     cin>>choice;
     switch(choice)
     {
         case 1:
-        
+    cout << "Enter a New Item: ";
+    cin>>newitem;
+     pos = stock_item[0](stock_item[0]);
+    if (pos != string::npos) {
+        stock_item[2].replace(pos, stock_item[0].length(), newitem);
+        cout << "After replacement: " << stock_item[] << endl;
+    } else 
+    {
+        cout << "The Item is not found ! " << ::endl;
+    }
         break;
         case 2:
         break;
@@ -110,6 +122,7 @@ void priceManipulation()
 
 void adminManipulation()
 {
+    system("cls");
     int choice;
     cout<<" 1) Modify Stock "<<endl;
     cout<<" 2) Modify price "<<endl;
@@ -127,9 +140,7 @@ void adminManipulation()
     adminMenu();
     break;
     }
-    
 }
-
 void adminMenu()
 {
     system("cls");
@@ -151,7 +162,7 @@ void adminMenu()
     break;
 
     case 3:
-   
+   adminManipulation();
     break;
 
     case 4:
@@ -266,7 +277,7 @@ void viewCart()
     cout<<endl;
     cout<<"---------------------------"<<endl;
     cout<<"Total items: "<<total_cart_items<<endl;
-    cout<<"Total price: "<<cart_item_total_price<<endl;
+    cout<<"Total price:$ "<<cart_item_total_price<<endl;
     cout<<"---------------------------"<<endl;
     cout<<endl;
     cout<<endl;
